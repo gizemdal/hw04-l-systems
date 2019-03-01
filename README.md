@@ -4,7 +4,7 @@ Name: Gizem Dal
 
 Pennkey: gizemdal
 
-Live demo: 
+Live demo: https://gizemdal.github.io/hw04-l-systems/
 
 Resources:
 I mostly got help from course resources such as Piazza, office hours & lecture notes. I refactored some Fractal Brownian Motion code I had from previous projects. Some other resources are listed as the following:
