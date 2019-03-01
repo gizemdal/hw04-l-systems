@@ -10,20 +10,26 @@ in vec4 vs_Pos; // Non-instanced; each particle is the same quad drawn in a diff
 in vec4 vs_Nor; // Non-instanced, and presently unused
 in vec4 vs_Col; // An instanced rendering attribute; each particle instance has a different color
 in vec3 vs_Translate; // Another instance rendering attribute used to position each quad instance in the scene
+in vec4 vs_T0; // first column of transform matrix
+in vec4 vs_T1; // second column of transform matrix
+in vec4 vs_T2; // third column of transform matrix
+in vec4 vs_T3; // fourth column of transform matrix
 in vec2 vs_UV; // Non-instanced, and presently unused in main(). Feel free to use it for your meshes.
 
 out vec4 fs_Col;
 out vec4 fs_Pos;
+out vec4 fs_Nor;
+out vec4 fs_LightVec; 
 
+vec3 lightPos = vec3(5.0, -3.0, 10.0);
 void main()
 {
     fs_Col = vs_Col;
     fs_Pos = vs_Pos;
+    mat4 T = mat4(vs_T0, vs_T1, vs_T2, vs_T3);
+    fs_Nor = normalize(vec4(transpose(inverse(T)) * vs_Nor)); 
 
-    vec3 offset = vs_Translate;
-    offset.z = (sin((u_Time + offset.x) * 3.14159 * 0.1) + cos((u_Time + offset.y) * 3.14159 * 0.1)) * 1.5;
-
-    vec3 billboardPos = offset + vs_Pos.x * u_CameraAxes[0] + vs_Pos.y * u_CameraAxes[1];
-
-    gl_Position = u_ViewProj * vec4(billboardPos, 1.0);
+    vec4 modelposition = T * vs_Pos;
+	fs_LightVec = vec4(lightPos, 1.0) - modelposition;
+    gl_Position = u_ViewProj * T * vs_Pos;
 }
