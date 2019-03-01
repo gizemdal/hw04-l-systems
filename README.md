@@ -35,10 +35,14 @@ For this project, I designed a set of formal grammar rules to create a plant lif
 
 ## Images:
 
-![initial.png] L-System Plant Generator
+L-System Plant Generator
+![initial.png](imgs/initial.png)
 
-![(iterations.png)] After a couple iterations
+After a couple iterations
+![iterations.png](imgs/iterations.png)
 
-![(flower.png)]Plant made from flowers
+Plant made from flowers
+![flower.png](imgs/flower.png)
 
-![(leaf.png)]Plant made from leafs
+Plant made from leafs
+![leaf.png](imgs/leaf.png)
